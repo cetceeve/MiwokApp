@@ -34,4 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent (this, NumbersActivity.class);
         startActivity(intent);
     }
+    private void testyTesta () {
+        int i1 = 1+1;
+    }
 }
