@@ -29,9 +29,13 @@ public class NumbersActivity extends AppCompatActivity {
 
         //display all words in the words ArrayList in NumbersActivity
         for (int index = 0; index < words.size(); index++) {
+            //find the NumbersActivity Layout and store it in a variable
             LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
+            //create a new TextView
             TextView wordView = new TextView(this);
+            //set a Text to be displayed in the TextView
             wordView.setText(words.get(index));
+            //add the TextView to Layout if the Layout 'exists'
             if (rootView != null) {
                 rootView.addView(wordView);
             }
