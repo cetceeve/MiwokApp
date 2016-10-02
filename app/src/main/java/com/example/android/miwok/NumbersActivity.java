@@ -28,16 +28,13 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(9, "ten");
 
         //display all words in the words ArrayList in NumbersActivity
-        int index = 0;
-        int wordsSize = words.size();
-        while (index < wordsSize) {
+        for (int index = 0; index < words.size(); index++) {
             LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
             TextView wordView = new TextView(this);
             wordView.setText(words.get(index));
             if (rootView != null) {
                 rootView.addView(wordView);
             }
-            index++;
         }
     }
 }
