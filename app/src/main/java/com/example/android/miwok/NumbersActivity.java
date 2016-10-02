@@ -14,6 +14,7 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
+        //Create ArrayList to display the english numbers
         ArrayList<String> words = new ArrayList<>();
         words.add(0, "one");
         words.add(1, "two");
@@ -26,6 +27,7 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(8, "nine");
         words.add(9, "ten");
 
+        //display all words in the words ArrayList in NumbersActivity
         int index = 0;
         int wordsSize = words.size();
         while (index < wordsSize) {
