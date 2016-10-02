@@ -1,7 +1,8 @@
 package com.example.android.miwok;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 public class NumbersActivity extends AppCompatActivity {
 
@@ -20,5 +21,9 @@ public class NumbersActivity extends AppCompatActivity {
         words[6] = "seven";
         words[7] = "eight";
         words[8] = "nine";
+
+        Log.v("NumbersActivity", "Word ad index 0: " + words[0]);
+        Log.v("NumbersAcitivty", "Word at index 7: " + words[7]);
+        Log.v("NumbersActivity", "Word at index 9: " + words[9]);
     }
 }
