@@ -22,6 +22,11 @@ public class Word {
         mImageResourceId = imageResourceId;
     }
 
+    public Word(String defaultTranslation, String miwokTranslation) {
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+    }
+
     //get default translation
     public String getDefaultTranslation() {
         return mDefaultTranslation;
