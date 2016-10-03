@@ -12,13 +12,13 @@ import java.util.ArrayList;
 
 /**
  * Created by fzeih on 03.10.2016.
- * custom Adapter to add Word Objects to NumbersActivity List View
+ * custom Adapter to add Word Objects to ListViews
  */
 
 //this Adapter extends from the ArrayAdapter class
 public class WordAdapter extends ArrayAdapter<Word> {
 
-    //stuff i do not know
+    //stuff i do not know - likely unnecessary
     private static final String LOG_TAG = WordAdapter.class.getSimpleName();
 
     //custom constructor with correct inputs

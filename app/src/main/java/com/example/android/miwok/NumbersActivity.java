@@ -13,7 +13,7 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-        //create ArrayList to display the english numbers
+        //create ArrayList to display the english words
         ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("one", "lutti"));
         words.add(new Word("two", "otiiko"));

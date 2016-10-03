@@ -13,6 +13,7 @@ public class Word {
     //Miwok translation for the word
     private String mMiwokTranslation;
 
+    //constructor for word class
     public Word(String defaultTranslation, String miwokTranslation) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
