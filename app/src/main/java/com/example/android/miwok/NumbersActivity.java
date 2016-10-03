@@ -28,7 +28,7 @@ public class NumbersActivity extends AppCompatActivity {
 
         //create ArrayAdapter for the words ArrayList
         WordAdapter adapter = new WordAdapter(this, words);
-        //sets the Adapter onto the NumbersActivity ListView
+        //sets the Adapter onto ListView
         ListView listView = (ListView) findViewById(R.id.list);
         if (listView != null) {
             listView.setAdapter(adapter);
