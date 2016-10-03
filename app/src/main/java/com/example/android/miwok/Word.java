@@ -13,15 +13,17 @@ public class Word {
     //Miwok translation for the word
     private String mMiwokTranslation;
 
+    //imageResourceID is an Integer
     private int mImageResourceId;
 
-    //constructor for word class
+    //constructor for all Activities
     public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
     }
 
+    //constructor for PhrasesActivity
     public Word(String defaultTranslation, String miwokTranslation) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
@@ -37,6 +39,7 @@ public class Word {
         return mMiwokTranslation;
     }
 
+    //get imageResourceID
     public int getImageResourceId() {
         return mImageResourceId;
     }
