@@ -13,7 +13,7 @@ public class ColorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-        //create ArrayList to display the english words
+        //create ArrayList to call word class constructor
         ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("red", "wetetti", R.drawable.color_red));
         words.add(new Word("green", "chokokki", R.drawable.color_green));

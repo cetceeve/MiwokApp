@@ -13,7 +13,7 @@ public class FamilyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-        //create ArrayList to display the english words
+        //create ArrayList to call word class constructor
         ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("father", "epe", R.drawable.family_father));
         words.add(new Word("mother", "eta", R.drawable.family_mother));
