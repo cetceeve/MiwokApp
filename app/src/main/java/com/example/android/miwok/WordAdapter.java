@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,9 +23,12 @@ public class WordAdapter extends ArrayAdapter<Word> {
     //stuff i do not know - likely unnecessary
     private static final String LOG_TAG = WordAdapter.class.getSimpleName();
 
+    private int mColorResourceId;
+
     //custom constructor with correct inputs
-    public WordAdapter (Activity context, ArrayList<Word> words) {
+    public WordAdapter (Activity context, ArrayList<Word> words, int colorResourceId) {
         super(context, 0, words);
+        mColorResourceId = colorResourceId;
     }
 
     //overwritten getView method to create the correct view for the ListView
@@ -63,6 +67,11 @@ public class WordAdapter extends ArrayAdapter<Word> {
                 imageView.setVisibility(View.GONE);
             }
         }
+
+        //set background color
+        LinearLayout linearLayout = (LinearLayout) listItemView.findViewById(R.id.list_horizontal_linear_layout);
+        linearLayout.setBackgroundResource(mColorResourceId);
+
         //returning the custom View to be displayed
         return listItemView;
     }
