@@ -2,8 +2,8 @@ package com.example.android.miwok;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -27,18 +27,11 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(8, "nine");
         words.add(9, "ten");
 
-        //display all words in the words ArrayList in NumbersActivity
-        for (int index = 0; index < words.size(); index++) {
-            //find the NumbersActivity Layout and store it in a variable
-            LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
-            //create a new TextView
-            TextView wordView = new TextView(this);
-            //set a Text to be displayed in the TextView
-            wordView.setText(words.get(index));
-            //add the TextView to Layout if the Layout 'exists'
-            if (rootView != null) {
-                rootView.addView(wordView);
-            }
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, words);
+
+        ListView listView = (ListView) findViewById(R.id.list);
+        if (listView != null) {
+            listView.setAdapter(itemsAdapter);
         }
     }
 }
