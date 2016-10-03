@@ -19,12 +19,12 @@ public class Word {
     }
 
     //get default translation
-    public String getmDefaultTranslation() {
+    public String getDefaultTranslation() {
         return mDefaultTranslation;
     }
 
     //get miwok translation
-    public String getmMiwokTranslation() {
+    public String getMiwokTranslation() {
         return mMiwokTranslation;
     }
 }
