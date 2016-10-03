@@ -14,7 +14,7 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        //Create ArrayList to display the english numbers
+        //create ArrayList to display the english numbers
         ArrayList<String> words = new ArrayList<>();
         words.add(0, "one");
         words.add(1, "two");
@@ -27,8 +27,9 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(8, "nine");
         words.add(9, "ten");
 
+        //create ArrayAdapter for the words ArrayList
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, words);
-
+        //sets the Adapter onto the NumbersActivity ListView
         ListView listView = (ListView) findViewById(R.id.list);
         if (listView != null) {
             listView.setAdapter(itemsAdapter);
