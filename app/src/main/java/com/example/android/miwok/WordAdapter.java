@@ -53,11 +53,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
         }
 
         //getting image resource ID for the ImageView
-        ImageView imageView = (ImageView) listItemView.findViewById(R.id.list_image_view);
+        //passed to ListView only when Word.java provides ResourceId
         if (currentWord !=null) {
-            imageView.setImageResource(currentWord.getImageResourceId());
+            ImageView imageView = (ImageView) listItemView.findViewById(R.id.list_image_view);
+            if (currentWord.getImageCheck()) {
+                imageView.setImageResource(currentWord.getImageResourceId());
+                imageView.setVisibility(View.VISIBLE);
+            } else {
+                imageView.setVisibility(View.GONE);
+            }
         }
-
         //returning the custom View to be displayed
         return listItemView;
     }

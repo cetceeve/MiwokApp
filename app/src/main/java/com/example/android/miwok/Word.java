@@ -16,18 +16,26 @@ public class Word {
     //imageResourceID is an Integer
     private int mImageResourceId;
 
+    //variable for if/else Statement in Adapter
+    private boolean mImageCheck;
+
     //constructor for all Activities
     public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
+        mImageCheck = true;
     }
 
     //constructor for PhrasesActivity
     public Word(String defaultTranslation, String miwokTranslation) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mImageCheck = false;
     }
+
+    //get ImageCheck
+    public boolean getImageCheck() {return mImageCheck; }
 
     //get default translation
     public String getDefaultTranslation() {
