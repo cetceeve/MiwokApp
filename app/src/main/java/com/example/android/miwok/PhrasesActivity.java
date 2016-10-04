@@ -37,11 +37,14 @@ public class PhrasesActivity extends AppCompatActivity {
             listView.setAdapter(adapter);
         }
 
+        //set ItemClickListener on ListView
         if (listView !=null) {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //variable of type word is created using the position in words array provided by adapter via onItemClick method
                     Word word = words.get(position);
+                    //media player is created getting the correct id from the word object
                     MediaPlayer mediaPlayer = MediaPlayer.create(PhrasesActivity.this, word.getAudioResourceId());
                     mediaPlayer.start();
                 }
