@@ -1,7 +1,10 @@
 package com.example.android.miwok;
 
-import android.support.v7.app.AppCompatActivity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,7 +17,7 @@ public class ColorsActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
 
         //create ArrayList to call word class constructor
-        ArrayList<Word> words = new ArrayList<>();
+        final ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("red", "wetetti", R.drawable.color_red, R.raw.color_red));
         words.add(new Word("green", "chokokki", R.drawable.color_green, R.raw.color_green));
         words.add(new Word("brown", "takaakki", R.drawable.color_brown, R.raw.color_brown));
@@ -27,9 +30,20 @@ public class ColorsActivity extends AppCompatActivity {
         //create ArrayAdapter for the words ArrayList
         WordAdapter adapter = new WordAdapter(this, words, R.color.category_colors);
         //sets the Adapter onto ListView
-        ListView listView = (ListView) findViewById(R.id.list);
+        final ListView listView = (ListView) findViewById(R.id.list);
         if (listView != null) {
             listView.setAdapter(adapter);
+        }
+
+        if (listView !=null) {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Word word = words.get(position);
+                    MediaPlayer mediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getAudioResourceId());
+                    mediaPlayer.start();
+                }
+            });
         }
     }
 }
