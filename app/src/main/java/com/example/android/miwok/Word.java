@@ -16,21 +16,26 @@ public class Word {
     //imageResourceID is an Integer
     private int mImageResourceId;
 
+    //audioResourceID is an Integer
+    private int mAudioResourceId;
+
     //variable for if/else Statement in Adapter
     private boolean mImageCheck;
 
     //constructor for all Activities
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int audioResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
+        mAudioResourceId = audioResourceId;
         mImageCheck = true;
     }
 
     //constructor for PhrasesActivity
-    public Word(String defaultTranslation, String miwokTranslation) {
+    public Word(String defaultTranslation, String miwokTranslation, int audioResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mAudioResourceId = audioResourceId;
         mImageCheck = false;
     }
 
@@ -50,5 +55,9 @@ public class Word {
     //get imageResourceID
     public int getImageResourceId() {
         return mImageResourceId;
+    }
+
+    public int getAudioResourceId() {
+        return mAudioResourceId;
     }
 }
