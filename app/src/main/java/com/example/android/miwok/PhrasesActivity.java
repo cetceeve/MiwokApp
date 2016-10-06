@@ -1,8 +1,10 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,8 +20,11 @@ public class PhrasesActivity extends AppCompatActivity {
         @Override
         public void onCompletion(MediaPlayer mMediaPlayer) {
             releaseMediaPlayer();
+            //abandons AudioFocus
+            mAudioManager.abandonAudioFocus(afChangeListener);
         }
     };
+    private AudioManager mAudioManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,7 @@ public class PhrasesActivity extends AppCompatActivity {
         }
 
         //set ItemClickListener on ListView
-        if (listView !=null) {
+        if (listView != null) {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,11 +61,14 @@ public class PhrasesActivity extends AppCompatActivity {
                     Word word = words.get(position);
                     //release MediaPlayer resources to save memory
                     releaseMediaPlayer();
-                    //media player is created getting the correct id from the word object
-                    mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, word.getAudioResourceId());
-                    mMediaPlayer.start();
-                    //Listener triggers releaseMediaPlayer Method to release memory
-                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    //call method to request AudioFocus, the method returns boolean
+                    if (requestAudioFocus()) {
+                        //media player is created getting the correct id from the word object
+                        mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, word.getAudioResourceId());
+                        mMediaPlayer.start();
+                        //Listener triggers releaseMediaPlayer Method to release memory
+                        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    }
                 }
             });
         }
@@ -88,5 +96,30 @@ public class PhrasesActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         releaseMediaPlayer();
+        //abandons AudioFocus
+        mAudioManager.abandonAudioFocus(afChangeListener);
     }
+
+    public boolean requestAudioFocus() {
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int result = mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        return (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
+    }
+
+    AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        public void onAudioFocusChange(int focusChange) {
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+                mMediaPlayer.pause();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                mMediaPlayer.stop();
+                releaseMediaPlayer();
+                mAudioManager.abandonAudioFocus(afChangeListener);
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                mMediaPlayer.pause();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                releaseMediaPlayer();
+                mMediaPlayer.start();
+            }
+        }
+    };
 }
