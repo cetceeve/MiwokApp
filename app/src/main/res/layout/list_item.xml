@@ -5,7 +5,7 @@
     android:layout_height="88dp"
     android:orientation="horizontal"
     android:id="@+id/list_horizontal_linear_layout"
-    tools:background="#000000">
+    tools:background="#4CAF50">
 
     <ImageView
         android:id="@+id/list_image_view"
