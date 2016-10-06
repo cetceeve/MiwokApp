@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_horizontal_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="88dp"
     android:orientation="horizontal"
-    android:id="@+id/list_horizontal_linear_layout"
     tools:background="#4CAF50">
 
     <ImageView
@@ -15,10 +15,11 @@
         tools:src="@mipmap/ic_launcher" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -43,5 +44,13 @@
             tools:text="one" />
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_play_arrow_white_24dp" />
 
 </LinearLayout>
