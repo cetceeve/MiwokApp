@@ -60,11 +60,14 @@ public class ColorsActivity extends AppCompatActivity {
                     Word word = words.get(position);
                     //release MediaPlayer resources to save memory
                     releaseMediaPlayer();
-                    //media player is created getting the correct id from the word object
-                    mMediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getAudioResourceId());
-                    mMediaPlayer.start();
-                    //Listener triggers releaseMediaPlayer Method to release memory
-                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    //call method to request AudioFocus, the method returns boolean
+                    if (requestAudioFocus()) {
+                        //media player is created getting the correct id from the word object
+                        mMediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getAudioResourceId());
+                        mMediaPlayer.start();
+                        //Listener triggers releaseMediaPlayer Method to release memory
+                        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    }
                 }
             });
         }
