@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +22,8 @@ public class FamilyActivity extends AppCompatActivity {
             releaseMediaPlayer();
         }
     };
+    //create AudioManager Object
+    private AudioManager mAudioManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,5 +92,37 @@ public class FamilyActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         releaseMediaPlayer();
+        //abandons AudioFocus
+        mAudioManager.abandonAudioFocus(afChangeListener);
     }
+
+    //Method called to request AudioFocus from System
+    public boolean requestAudioFocus() {
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int result = mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        //result of AudioFocus Request is returned as boolean
+        return (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
+    }
+
+    //Listener to detect any AudioFocus changes
+    AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        public void onAudioFocusChange(int focusChange) {
+            //on temporary AudioFocus Loss the audio will be paused
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+                mMediaPlayer.pause();
+                //on AudioFocus Loss the MediaPlayer gets stopped and MediaPlayer Memory is released
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                mMediaPlayer.stop();
+                releaseMediaPlayer();
+                mAudioManager.abandonAudioFocus(afChangeListener);
+                //on temporary AudioFocus Loss the audio will be paused
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                mMediaPlayer.pause();
+                //on AudioFocus gain after loss the MediaPlayer starts again
+            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                releaseMediaPlayer();
+                mMediaPlayer.start();
+            }
+        }
+    };
 }
