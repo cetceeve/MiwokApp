@@ -20,8 +20,6 @@ public class ColorsActivity extends AppCompatActivity {
         @Override
         public void onCompletion(MediaPlayer mMediaPlayer) {
             releaseMediaPlayer();
-            //abandons AudioFocus
-            mAudioManager.abandonAudioFocus(afChangeListener);
         }
     };
     //create AudioManager Object
@@ -87,6 +85,9 @@ public class ColorsActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
+
+            //abandons AudioFocus
+            mAudioManager.abandonAudioFocus(afChangeListener);
         }
     }
 
@@ -95,12 +96,10 @@ public class ColorsActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         releaseMediaPlayer();
-        //abandons AudioFocus
-        mAudioManager.abandonAudioFocus(afChangeListener);
     }
 
     //Method called to request AudioFocus from System
-    public boolean requestAudioFocus() {
+    private boolean requestAudioFocus() {
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         int result = mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
         //result of AudioFocus Request is returned as boolean
@@ -117,7 +116,6 @@ public class ColorsActivity extends AppCompatActivity {
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                 mMediaPlayer.stop();
                 releaseMediaPlayer();
-                mAudioManager.abandonAudioFocus(afChangeListener);
                 //on temporary AudioFocus Loss the audio will be paused
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
                 mMediaPlayer.pause();
