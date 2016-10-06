@@ -20,6 +20,8 @@ public class ColorsActivity extends AppCompatActivity {
         @Override
         public void onCompletion(MediaPlayer mMediaPlayer) {
             releaseMediaPlayer();
+            //abandons AudioFocus
+            mAudioManager.abandonAudioFocus(afChangeListener);
         }
     };
     //create AudioManager Object
