@@ -63,6 +63,7 @@ public class ColorsActivity extends AppCompatActivity {
             });
         }
     }
+
     /**
      * Clean up the media player by releasing its resources.
      */
@@ -78,5 +79,12 @@ public class ColorsActivity extends AppCompatActivity {
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
         }
+    }
+
+    //Memory gets released when activity stops
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
     }
 }

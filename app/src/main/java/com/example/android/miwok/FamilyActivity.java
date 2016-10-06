@@ -82,4 +82,11 @@ public class FamilyActivity extends AppCompatActivity {
             mMediaPlayer = null;
         }
     }
+
+    //Memory gets released when activity stops
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
 }

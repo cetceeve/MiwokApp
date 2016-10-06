@@ -65,6 +65,7 @@ public class PhrasesActivity extends AppCompatActivity {
             });
         }
     }
+
     /**
      * Clean up the media player by releasing its resources.
      */
@@ -82,6 +83,7 @@ public class PhrasesActivity extends AppCompatActivity {
         }
     }
 
+    //Memory gets released when activity stops
     @Override
     protected void onStop() {
         super.onStop();
