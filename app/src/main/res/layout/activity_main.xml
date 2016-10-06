@@ -13,11 +13,15 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/tan_background"
     android:orientation="vertical"
     tools:context="com.example.android.miwok.MainActivity">
@@ -47,3 +51,5 @@
         android:text="@string/category_phrases" />
 
 </LinearLayout>
+
+</ScrollView>
