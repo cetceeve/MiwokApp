@@ -31,7 +31,7 @@ public class Word {
         mImageCheck = true;
     }
 
-    //constructor for PhrasesActivity
+    //constructor for PhrasesFragment
     public Word(String defaultTranslation, String miwokTranslation, int audioResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
